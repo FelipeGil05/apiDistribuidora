@@ -14,12 +14,12 @@ namespace Application.Services
     {
         private readonly IItemRepository _itemRepository;
         private readonly IProductRepository _productRepository;
-        //private readonly ICartRepository _cartRepository;
-        public ItemService(IItemRepository itemRepository, IProductRepository productRepository/*, ICartRepository cartRepository*/)
+        private readonly ICartRepository _cartRepository;
+        public ItemService(IItemRepository itemRepository, IProductRepository productRepository, ICartRepository cartRepository)
         {
             _itemRepository = itemRepository;
             _productRepository = productRepository;
-            //_cartRepository = cartRepository;
+            _cartRepository = cartRepository;
         }
 
         public Item? GetItemById(int id)

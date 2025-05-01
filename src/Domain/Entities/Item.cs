@@ -18,7 +18,7 @@ namespace Domain.Entities
         public string? ProductName { get; set; }
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
-        public decimal Total => UnitPrice + Quantity;
+        public decimal Total => UnitPrice * Quantity;
         public int? CartId { get; set; }
         [JsonIgnore]
         public Cart? Cart { get; set; }
