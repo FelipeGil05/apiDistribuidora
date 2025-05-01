@@ -7,18 +7,15 @@ using System.Threading.Tasks;
 
 namespace Application.Models.Dtos
 {
-    public class ClientDto
+    public class ProductDto
     {
         [Required]
         public string Name { get; set; }
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        public decimal Price { get; set; }
         [Required]
-        public string Password { get; set; }
+        public int Stock { get; set; }
         [Required]
-        public string Location { get; set; }
-        [Required]
-        public int Dni { get; set; }
+        public string Brand { get; set; }
     }
 }

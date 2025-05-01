@@ -21,7 +21,12 @@ namespace Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasDiscriminator(u => u.UserRol);
+            modelBuilder.Entity<User>()
+                .HasDiscriminator<string>("Discriminator")
+                .HasValue<User>("User")
+                .HasValue<Client>("Client")
+                .HasValue<Admin>("Admin")
+                .HasValue<SysAdmin>("SysAdmin");
 
             modelBuilder.Entity<Cart>()
                 .HasMany(c => c.Products)
