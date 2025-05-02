@@ -1,7 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Models.Dtos;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -10,76 +9,75 @@ namespace web.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-
-    public class ProductController : ControllerBase
+    public class AdminController : ControllerBase
     {
-        private readonly IProductService _productService;
+        private readonly IAdminService _adminService;
 
-        public ProductController(IProductService productService)
+        public AdminController(IAdminService adminService)
         {
-            _productService = productService;
+            _adminService = adminService;
         }
 
-        [AllowAnonymous]
         [HttpGet("[action]")]
         public IActionResult GetAll()
         {
-            return Ok(_productService.GetProducts());
-        }
-
-        [HttpGet("[action]/{id}")]
-        public IActionResult GetById(int id)
-        {
-
             var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
-            if (userRole == "Client" || userRole == "Admin")
+            if (userRole == "SysAdmin")
             {
-                return Ok(_productService.GetProductById(id));
+                return Ok(_adminService.GetAdmins());
             }
             return Ok("Rol de usuario no calificado");
-
         }
-        
+
+        [HttpGet("[action]/{name}")]
+        public IActionResult GetAdmin(string name)
+        {
+            var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+            if (userRole == "SysAdmin")
+            {
+                return Ok(_adminService.GetAdminByName(name));
+            }
+            return Ok("Rol de usuario no calificado");
+        }
+
         [HttpPost("[action]")]
-        public IActionResult AddProduct([FromBody] ProductDto productDto)
+        public IActionResult AddAmin([FromBody] AdminDto adminDto)
         {
             var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
-            if (userRole == "Admin")
+            if (userRole == "SysAdmin")
             {
-                return Ok(_productService.AddProduct(productDto));
+                return Ok(_adminService.AddAdmin(adminDto));
             }
             return Ok("Rol de usuario no calificado");
-
         }
 
         [HttpPut("[action]/{id}")]
-        public IActionResult UpdateProduct(int id, [FromBody] ProductDto productDto)
+        public IActionResult UpdateAdmin(int id, [FromBody] AdminDto adminDto)
         {
-
             var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
-            if (userRole == "Admin")
+            if (userRole == "SysAdmin")
             {
-                _productService.UpdateProduct(id, productDto);
-                return Ok("Producto actualizado");
+                _adminService.UpdateAdmin(id, adminDto);
+                return Ok("Admin actualizado");
             }
             return Ok("Rol de usuario no calificado");
         }
 
         [HttpDelete("[action]/{id}")]
-        public IActionResult DeleteProduct(int id)
+        public IActionResult DeleteAdmin(int id)
         {
             var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
-            if (userRole == "Admin")
+            if (userRole == "SysAdmin")
             {
-                _productService.DeletePoduct(id);
-                return Ok("Producto eliminado");
+                _adminService.DeleteAdmin(id);
+                return Ok("Admin eliminado");
             }
             return Ok("Rol de usuario no calificado");
-
         }
     }
 }

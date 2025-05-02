@@ -21,7 +21,7 @@ namespace web.Controllers
         {
             var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
-            if (userRole == "SysAdmin" || userRole == "Client")
+            if (userRole == "SysAdmin" || userRole == "Client" || userRole == "Admin")
             {
                 return Ok(_cartService.GetCartById(id));
             }

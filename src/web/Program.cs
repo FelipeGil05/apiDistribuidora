@@ -45,12 +45,14 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
 //services
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.Configure<AuthenticateServiceOptions>(
 
 builder.Configuration.GetSection(AuthenticateServiceOptions.AuthenticateService));
