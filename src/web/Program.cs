@@ -58,7 +58,7 @@ builder.Services.Configure<AuthenticateServiceOptions>(
 builder.Configuration.GetSection(AuthenticateServiceOptions.AuthenticateService));
 builder.Services.AddScoped<ICustomAuthenticationService, AuthenticateService>();
 
-builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlite(
+builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlite(
 builder.Configuration["ConnectionStrings:apiDistribuidoraConnectionString"],
 b => b.MigrationsAssembly("apiDistribuidora")));
 

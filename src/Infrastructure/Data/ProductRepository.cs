@@ -10,9 +10,9 @@ namespace Infrastructure.Data
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly ApplicationContext _dbContext;
+        private readonly ApplicationDBContext _dbContext;
 
-        public ProductRepository(ApplicationContext dbContext)
+        public ProductRepository(ApplicationDBContext dbContext)
         {
             _dbContext = dbContext;
         }

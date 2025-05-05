@@ -10,9 +10,9 @@ namespace Infrastructure.Data
 {
     public class ItemRepository : IItemRepository
     {
-        private readonly ApplicationContext _dbContext;
+        private readonly ApplicationDBContext _dbContext;
 
-        public ItemRepository(ApplicationContext dbContext)
+        public ItemRepository(ApplicationDBContext dbContext)
         {
             _dbContext = dbContext;
         }

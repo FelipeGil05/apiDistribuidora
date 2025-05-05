@@ -9,9 +9,9 @@ namespace Infrastructure.Data
 {
     public class UserRepository : IUserRepository
     {
-        private readonly ApplicationContext _dbContext;
+        private readonly ApplicationDBContext _dbContext;
 
-        public UserRepository(ApplicationContext dbContext)
+        public UserRepository(ApplicationDBContext dbContext)
         {
             _dbContext = dbContext;
         }

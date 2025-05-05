@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationDBContext : DbContext
     {
         private readonly bool isTestingEnvironment;
         public DbSet<Client> Clients { get; set; }
@@ -37,7 +37,7 @@ namespace Infrastructure.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) 
+        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options) 
         { 
 
         }

@@ -10,9 +10,9 @@ namespace Infrastructure.Data
 {
     public class AdminRepository : IAdminRepository
     {
-        public readonly ApplicationContext _dbContext;
+        public readonly ApplicationDBContext _dbContext;
 
-        public AdminRepository(ApplicationContext dbContext)
+        public AdminRepository(ApplicationDBContext dbContext)
         {
             _dbContext = dbContext;
         }

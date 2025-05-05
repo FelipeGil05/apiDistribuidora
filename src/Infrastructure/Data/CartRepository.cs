@@ -11,9 +11,9 @@ namespace Infrastructure.Data
 {
     public class CartRepository : ICartRepository
     {
-        private readonly ApplicationContext _dbContext;
+        private readonly ApplicationDBContext _dbContext;
 
-        public CartRepository(ApplicationContext dbContext)
+        public CartRepository(ApplicationDBContext dbContext)
         {
             _dbContext = dbContext;
 

@@ -10,8 +10,8 @@ namespace Infrastructure.Data
 {
     public class ClientRepository : IClientRepository
     {
-        private readonly ApplicationContext _dbContext;
-        public ClientRepository(ApplicationContext dbContext)
+        private readonly ApplicationDBContext _dbContext;
+        public ClientRepository(ApplicationDBContext dbContext)
         {
             _dbContext = dbContext;
         }
